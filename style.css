@@ -1,21 +1,21 @@
 * {
     padding: 0;
-    margin: 0;   
+    margin: 0;
+    box-sizing: border-box;   
 }
 
 .slider-container { 
-   position: relative; 
-   margin: auto;  
+   position: relative;  
+   margin: 40px auto;  
    width: min(100vw, 720px);
    aspect-ratio: 3 / 2;
    overflow: hidden;
+   
 }
 
 .slider {    
    position: absolute;  
-   display: flex;
-   transform: translateX(-0%);
-   /* translate: -720px; */
+   display: flex;   
 } 
 
 .slider > div {
@@ -27,11 +27,67 @@
 }
 
 .nav-container {
-    position: absolute; 
-    width: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
+    position: absolute;
+    width: min(100vw, 720px);
+    aspect-ratio: 3 / 2;  
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px;   
 }
+
+.round-buttons-container {
+    display: flex;
+    align-self: flex-end;
+    gap: 32px;
+    background-color: rgba(0, 0, 0, .1);
+    padding: 8px 16px;
+    border-radius: 50px;
+
+    button {
+        cursor: pointer;
+        border: none;
+        width: 16px;
+        height: 16px;       
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, .4);
+    }  
+
+    button:hover {
+        background-color: rgba(255, 255, 255, .6);
+    } 
+    
+    .active {
+        background-color: rgb(235, 235, 235);
+    }
+}
+
+#button-previous {
+    background: url(./images/chevron-left.svg) no-repeat;
+    background-position: 55% 50%;     
+}
+
+#button-next {
+    background: url(./images/chevron-right.svg) no-repeat; 
+    background-position: 45% 50%;    
+}
+
+#button-previous,
+#button-next {
+    cursor: pointer;
+    border: none;      
+    border-radius: 50%;
+    width: 48px;
+    height: 48px; 
+    background-color: rgba(0, 0, 0, .1);      
+    background-size: 68px;
+    opacity: 40%;
+    
+    &:hover {
+        opacity: 80%;
+    }
+}
+
+
+
+
