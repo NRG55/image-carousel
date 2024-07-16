@@ -3,7 +3,9 @@ const buttonNext = document.getElementById("button-next");
 const buttonPrevious = document.getElementById("button-previous");
 const roundButtons = document.querySelectorAll(".round-buttons-container > button");
 const slider = document.querySelector(".slider");
+const navContainer = document.querySelector(".nav-container");
 let currentIndex = 0;
+let autoSlideIntervalId;
 
 images.forEach((div) => {   
     div.style.backgroundImage = `url(./images/${div.getAttribute("data-image")})`;
@@ -11,11 +13,11 @@ images.forEach((div) => {
 
 const slide = (index) => {   
     if (index < 0) {
-        index = 0;        
+        index = images.length -1;        
     };
 
-    if (index >= images.length - 1) {
-        index = images.length - 1;        
+    if (index >= images.length) {
+        index = 0;        
     };    
     
     roundButtons[currentIndex].classList.remove("active");
@@ -40,6 +42,24 @@ roundButtons.forEach((button, index) => {
 
 roundButtons[0].classList.add("active");
 
+const startAutoSlide = () => {
+    autoSlideIntervalId = setInterval(() => {
+        slide(currentIndex + 1);
+    }, 5000);
+};
 
+const stopAutoSlide = () => {
+    clearInterval(autoSlideIntervalId);
+};
+
+navContainer.addEventListener("mouseover", () => {   
+    stopAutoSlide();
+});
+
+navContainer.addEventListener("mouseout", () => {  
+    startAutoSlide();
+});
+
+startAutoSlide();
 
 
